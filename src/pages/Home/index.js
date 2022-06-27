@@ -1,33 +1,41 @@
 import React, { useEffect, useState } from "react"
-import "./home.scss"
 import { DataTable } from "../../components/Table"
-import { Container, Box } from "@material-ui/core"
+import { Container } from "@material-ui/core"
 
 import { useDispatch, useSelector } from "react-redux"
 import { getAllMovies } from "../../redux/movies"
 import { SelectLanguaje } from "../../components/inputLanguaje"
-import { getAvailableLanguages } from "../../redux/languages"
+import { Loading } from "../../components/Loading"
+import { ErrorAlert } from "../../components/ErrorAlert"
+import { getAvailableLanguagesService } from "../../services/languagesServices"
 
-export const Home = () => {
+export const Home = ({ children }) => {
   const dispatch = useDispatch()
-  const movies = useSelector((state) => state.movies)
+
+  let { data, error, loading } = useSelector((state) => state.movies)
+
   const [langCode, setLangCode] = useState(null)
+  const [allLangs, setAllLangs] = useState(null)
 
   useEffect(() => {
     dispatch(getAllMovies(langCode))
-  }, [langCode, dispatch]) // en revisión
+  }, [langCode, dispatch])
 
   useEffect(() => {
-    dispatch(getAvailableLanguages())
-  }, [dispatch])
+    async function getlangs() {
+      const langs = await getAvailableLanguagesService()
+      setAllLangs(langs)
+    }
+    getlangs()
+  }, [])
 
   return (
     <>
+      {loading && <Loading />}
       <Container>
-        <Box style={{ width: "50%", margin: "50px 0 0 auto" }}>
-          <SelectLanguaje langCode={langCode} setLangCode={setLangCode} />
-        </Box>
-        <DataTable movies={movies} />
+        {error && <ErrorAlert errormessage={error} />}
+        <SelectLanguaje setLangCode={setLangCode} allLanguages={allLangs} />
+        <DataTable movies={data} />
       </Container>
     </>
   )

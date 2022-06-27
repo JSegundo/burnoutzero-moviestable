@@ -50,14 +50,15 @@ export const DataTable = ({ movies }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {movies[0] &&
-              movies.map((movie, index) => (
-                <TableRow hover role="checkbox" tabIndex={-1} key={index}>
-                  {columns.map((col, i) => (
-                    <TableCell key={i}>{movie[col.id]}</TableCell>
-                  ))}
-                </TableRow>
-              ))}
+            {movies?.length
+              ? movies.map((movie, index) => (
+                  <TableRow hover key={index}>
+                    {columns.map((col, i) => (
+                      <TableCell key={i}>{movie[col.id]}</TableCell>
+                    ))}
+                  </TableRow>
+                ))
+              : null}
           </TableBody>
         </Table>
       </TableContainer>
