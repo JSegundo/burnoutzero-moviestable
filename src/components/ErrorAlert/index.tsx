@@ -2,10 +2,11 @@ import Alert from "@mui/material/Alert"
 import Button from "@mui/material/Button"
 import Stack from "@mui/material/Stack"
 import AlertTitle from "@mui/material/AlertTitle"
+import React from "react"
 
 export const ErrorAlert = ({ errormessage }) => {
   const handleReload = () => {
-    window.location.reload(true)
+    window.location.reload()
   }
 
   return (

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react"
 import { DataTable } from "../../components/Table"
-import { Container } from "@material-ui/core"
+import { Container } from "@mui/material"
+
+import { Dispatch } from "redux"
 
 import { useDispatch, useSelector } from "react-redux"
 import { getAllMovies } from "../../redux/movies"
@@ -9,13 +11,15 @@ import { Loading } from "../../components/Loading"
 import { ErrorAlert } from "../../components/ErrorAlert"
 import { getAvailableLanguagesService } from "../../services/languagesServices"
 
-export const Home = ({ children }) => {
-  const dispatch = useDispatch()
+import { LangInterface } from "../../interfaces"
 
-  let { data, error, loading } = useSelector((state) => state.movies)
+export const Home = () => {
+  const dispatch = useDispatch<Dispatch<any>>()
 
-  const [langCode, setLangCode] = useState(null)
-  const [allLangs, setAllLangs] = useState(null)
+  let { data, error, loading } = useSelector((state: any) => state.movies)
+
+  const [langCode, setLangCode] = useState<string | null>(null)
+  const [allLangs, setAllLangs] = useState<LangInterface[] | void>()
 
   useEffect(() => {
     dispatch(getAllMovies(langCode))
@@ -32,8 +36,8 @@ export const Home = ({ children }) => {
   return (
     <>
       {loading && <Loading />}
+      {error ? <ErrorAlert errormessage={error} /> : null}
       <Container>
-        {error && <ErrorAlert errormessage={error} />}
         <SelectLanguaje setLangCode={setLangCode} allLanguages={allLangs} />
         <DataTable movies={data} />
       </Container>

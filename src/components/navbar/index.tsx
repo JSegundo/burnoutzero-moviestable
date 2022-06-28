@@ -1,5 +1,5 @@
 import React from "react"
-import { AppBar, Toolbar, Typography } from "@material-ui/core"
+import { AppBar, Toolbar, Typography } from "@mui/material"
 import "./navbar.scss"
 import { CgHello } from "react-icons/cg"
 export const Navbar = () => {
