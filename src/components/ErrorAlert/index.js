@@ -11,7 +11,6 @@ export const ErrorAlert = ({ errormessage }) => {
   return (
     <Stack sx={{ width: "100%", margin: "30px  auto 0 " }}>
       <Alert
-        // variant="filled"
         severity="error"
         action={
           <Button color="inherit" onClick={handleReload}>

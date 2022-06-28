@@ -1,7 +1,7 @@
 import React from "react"
 import TextField from "@mui/material/TextField"
 import Autocomplete from "@mui/material/Autocomplete"
-import { Box } from "@material-ui/core"
+import { Box } from "@mui/material"
 
 export const SelectLanguaje = ({ setLangCode, allLanguages }) => {
   const handleChange = (event, newlang) => {

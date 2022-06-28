@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { DataTable } from "../../components/Table"
-import { Container } from "@material-ui/core"
+import { Container } from "@mui/material"
 
 import { useDispatch, useSelector } from "react-redux"
 import { getAllMovies } from "../../redux/movies"
@@ -9,7 +9,7 @@ import { Loading } from "../../components/Loading"
 import { ErrorAlert } from "../../components/ErrorAlert"
 import { getAvailableLanguagesService } from "../../services/languagesServices"
 
-export const Home = ({ children }) => {
+export const Home = () => {
   const dispatch = useDispatch()
 
   let { data, error, loading } = useSelector((state) => state.movies)

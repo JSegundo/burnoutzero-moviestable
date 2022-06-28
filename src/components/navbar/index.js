@@ -1,7 +1,8 @@
 import React from "react"
-import { AppBar, Toolbar, Typography } from "@material-ui/core"
-import "./navbar.scss"
+import { AppBar, Toolbar, Typography } from "@mui/material"
 import { CgHello } from "react-icons/cg"
+import "./navbar.scss"
+
 export const Navbar = () => {
   return (
     <AppBar position="static" style={{ backgroundColor: "rgb(51, 71, 91)" }}>

@@ -1,4 +1,4 @@
-import { createReducer, createAsyncThunk, createSlice } from "@reduxjs/toolkit"
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { getAllMoviesService } from "../../services/serviceGetMovies"
 
 export const getAllMovies = createAsyncThunk("getmovies", getAllMoviesService)

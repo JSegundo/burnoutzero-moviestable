@@ -52,9 +52,9 @@ export const DataTable = ({ movies }) => {
           <TableBody>
             {movies?.length
               ? movies.map((movie, index) => (
-                  <TableRow hover key={index}>
+                  <TableRow hover key={movie.id}>
                     {columns.map((col, i) => (
-                      <TableCell key={i}>{movie[col.id]}</TableCell>
+                      <TableCell key={col.id}>{movie[col.id]}</TableCell>
                     ))}
                   </TableRow>
                 ))
